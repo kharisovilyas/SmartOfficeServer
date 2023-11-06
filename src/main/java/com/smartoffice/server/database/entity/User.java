@@ -1,7 +1,7 @@
 package com.smartoffice.server.database.entity;
 
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
