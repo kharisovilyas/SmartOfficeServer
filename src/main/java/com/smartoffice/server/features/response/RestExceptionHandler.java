@@ -1,8 +1,8 @@
 package com.smartoffice.server.features.response;
 
-import com.smartoffice.server.features.response.exception.InvalidPasswordException;
-import com.smartoffice.server.features.response.exception.UserAlreadyExistsException;
-import com.smartoffice.server.features.response.exception.UserNotFoundException;
+import com.smartoffice.server.features.response.exception.user.InvalidPasswordException;
+import com.smartoffice.server.features.response.exception.user.UserAlreadyExistsException;
+import com.smartoffice.server.features.response.exception.user.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

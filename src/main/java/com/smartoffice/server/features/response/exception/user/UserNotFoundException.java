@@ -1,4 +1,4 @@
-package com.smartoffice.server.features.response.exception;
+package com.smartoffice.server.features.response.exception.user;
 
 public class UserNotFoundException extends RuntimeException {
     public UserNotFoundException(String username) {
