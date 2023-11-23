@@ -1,34 +1,30 @@
 package com.smartoffice.server.database.entity.rooms;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
 
+import com.smartoffice.server.database.entity.schedule.ScheduleData;
+import lombok.Data;
+
+import java.util.List;
+
 @Entity
+@Data
 @Table(name = "Room")
 public class RoomData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    @Getter
-    @Setter
+    @Column(name = "room_id")
     private Long roomId;
 
-    @Column(name = "name")
-    @Getter
-    @Setter
-    private String name;
+    @Column(name = "room_name")
+    private String roomName;
+
+    @OneToMany(mappedBy = "room")
+    private List<ScheduleData> schedules;
 
     @Column(name = "capacity")
-    @Getter
-    @Setter
-    private Integer capacity; // вместимость
+    private Integer capacity;
 
-    //добавить текущее количество людей.
-
-    @Column(name = "rental_id")
-    @Getter
-    @Setter
-    private Long rentalId;
+    @Column(name = "floor")
+    private Integer floor;
 }

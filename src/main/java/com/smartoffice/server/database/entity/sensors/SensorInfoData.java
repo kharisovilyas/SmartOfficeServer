@@ -1,42 +1,42 @@
 package com.smartoffice.server.database.entity.sensors;
 
+import com.smartoffice.server.database.entity.rooms.RoomData;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Data
 @Table(name = "Sensor_Info")
 public class SensorInfoData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sensor_id")
-    @Getter
-    @Setter
     private Long sensorId;
 
-    @Column(name = "sensor_type_id")
-    @Getter
-    @Setter
-    private Long sensorTypeId;
+    @Column(name = "sensor_name")
+    private String sensorName;
+
+    @ManyToOne
+    @JoinColumn(name = "sensor_type_id")
+    private SensorTypeData sensorType;
+
+    @OneToOne
+    @JoinColumn(name = "room_id")
+    private RoomData roomData;
+
+    @OneToMany(mappedBy = "sensorInfo", cascade = CascadeType.ALL)
+    private List<SensorData> sensorDataList;
 
     @Column(name = "location")
-    @Getter
-    @Setter
     private String location;
 
     @Column(name = "description")
-    @Getter
-    @Setter
     private Double description;
 
     @Column(name = "status")
-    @Getter
-    @Setter
     private Boolean status;
-
-    @Column(name = "room_id")
-    @Getter
-    @Setter
-    private Long roomId;
 }

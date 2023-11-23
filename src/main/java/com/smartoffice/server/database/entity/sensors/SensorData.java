@@ -1,5 +1,6 @@
 package com.smartoffice.server.database.entity.sensors;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,28 +9,21 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Sensor_Data")
-
+@Data
 public class SensorData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sensor_data_id")
-    @Getter
-    @Setter
     private Long sensorDataId;
 
-    @Column(name = "sensor_id")
-    @Getter
-    @Setter
-    private Long sensorId;
+    @ManyToOne
+    @JoinColumn(name = "sensor_id")
+    private SensorInfoData sensorInfo;
 
     @Column(name = "value")
-    @Getter
-    @Setter
     private Double value;
 
     @Column(name = "timestamp")
-    @Getter
-    @Setter
     private LocalDateTime timestamp;
 }
 

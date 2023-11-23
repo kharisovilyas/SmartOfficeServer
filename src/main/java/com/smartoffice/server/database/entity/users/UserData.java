@@ -1,58 +1,24 @@
 package com.smartoffice.server.database.entity.users;
 
+import lombok.Data;
 
 import javax.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
+@Data
 @Table(name = "User_Data")
 public class UserData {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    @Getter
-    @Setter
+    @Column(name = "user_id", unique = true)
     private Long userId;
 
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "user_id")
+    private UserInfoData userInfo;
+
     @Column(name = "email")
-    @Getter
-    @Setter
     private String email;
 
     @Column(name = "password")
-    @Getter
-    @Setter
     private String password;
-
-    @Column(name = "first_name")
-    @Getter
-    @Setter
-    private String firstName;
-
-    @Column(name = "surname")
-    @Getter
-    @Setter
-    private String surname;
-
-    @Column(name = "patronymic")
-    @Getter
-    @Setter
-    private String patronymic;
-
-    @Column(name = "birthday")
-    @Getter
-    @Setter
-    private String birthday;
-
-    @Column(name = "age")
-    @Getter
-    @Setter
-    private int age;
-
-    @Column(name = "company_id")
-    @Getter
-    @Setter
-    private Long company;
 }
-

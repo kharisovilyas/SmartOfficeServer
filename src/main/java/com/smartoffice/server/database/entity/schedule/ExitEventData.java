@@ -1,4 +1,5 @@
-package com.smartoffice.server.database.entity.users;
+package com.smartoffice.server.database.entity.schedule;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -6,25 +7,22 @@ import java.time.LocalDateTime;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "EntryEvent")
-public class EntryEventData {
+@Table(name = "Exit_Event")
+public class ExitEventData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "entry_id")
+    @Column(name = "exit_id")
     @Getter
     @Setter
-    Integer entryId;
+    Integer exitId;
 
     @Column(name = "schedule_id", unique = true)
     @Getter
     @Setter
     Integer scheduleId;
 
-    //добавить userId
-    //добавить doorId
-
-    @Column(name = "entry_time", unique = true)
+    @Column(name = "exit_time")
     @Getter
     @Setter
-    LocalDateTime entryTime;
+    LocalDateTime exitTime;
 }

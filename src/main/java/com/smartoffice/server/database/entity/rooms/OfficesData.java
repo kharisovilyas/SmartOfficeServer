@@ -1,47 +1,23 @@
 package com.smartoffice.server.database.entity.rooms;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.*;
 
 @Entity
+@Data
 @Table(name = "Offices")
 public class OfficesData {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "office_id")
-    @Getter
-    @Setter
-    private Long office_id;
+    private Long officeId;
 
     @Column(name = "office_name")
-    @Getter
-    @Setter
     private String officeName;
 
-    @Column(name = "capacity")
-    @Getter
-    @Setter
-    private Integer capacity;
-
-    @Column(name = "floor")
-    @Getter
-    @Setter
-    private Integer floor;
-
-    @Column(name = "rental_id")
-    @Getter
-    @Setter
-    private Long rentalId;
-
-    @Column(name = "company_id")
-    @Getter
-    @Setter
+    @Column(name = "company_id", unique = true)
     private Long companyId;
 
     @Column(name = "room_id")
-    @Getter
-    @Setter
     private Long roomId;
 }
