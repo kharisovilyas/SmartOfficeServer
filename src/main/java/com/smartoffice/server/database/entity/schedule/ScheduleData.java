@@ -1,5 +1,6 @@
 package com.smartoffice.server.database.entity.schedule;
 
+import com.smartoffice.server.database.entity.rooms.RoomData;
 import com.smartoffice.server.database.entity.users.UserData;
 import lombok.Data;
 
@@ -13,10 +14,11 @@ public class ScheduleData {
     @Column(name = "schedule_id")
     private Long scheduleId;
 
-    @Column(name = "user_id")
-    private Long userId;
-
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private UserData user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "room_id")
+    private RoomData room;
 }

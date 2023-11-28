@@ -4,7 +4,7 @@ import com.smartoffice.server.database.dto.sensors.SensorInfoDTO;
 import com.smartoffice.server.database.entity.rooms.RoomData;
 import com.smartoffice.server.database.entity.sensors.SensorInfoData;
 import com.smartoffice.server.database.entity.sensors.SensorTypeData;
-import com.smartoffice.server.features.repository.RoomRepository;
+import com.smartoffice.server.features.repository.room.RoomRepository;
 import com.smartoffice.server.features.repository.sensor.SensorInfoRepository;
 import com.smartoffice.server.features.repository.sensor.SensorRepository;
 import com.smartoffice.server.features.repository.sensor.SensorTypeRepository;
@@ -87,7 +87,6 @@ public class SensorInfoService {
         sensorInfoData.setLocation(sensorInfoDTO.getLocation());
         sensorInfoData.setDescription(sensorInfoDTO.getDescription());
         sensorInfoData.setStatus(sensorInfoDTO.getStatus());
-
         sensorInfoData.setSensorType(sensorTypeRepository.findByTypeName(sensorInfoDTO.getTypeName()));
         sensorInfoData.setSensorDataList(
                 StreamSupport.stream(sensorRepository.findAll().spliterator(), true).toList()

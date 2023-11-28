@@ -1,4 +1,6 @@
 package com.smartoffice.server.database.entity.qr;
+import com.smartoffice.server.database.entity.users.UserData;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -6,27 +8,22 @@ import java.time.LocalDateTime;
 import javax.persistence.*;
 
 @Entity
+@Data
 @Table(name = "QR_Log")
 public class QRLogData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "log_id")
-    @Getter
-    @Setter
-    private Integer logId;
+    private Long logId;
 
-    @Column(name = "scanner_id")
-    @Getter
-    @Setter
-    private Integer scannerId;
+    @ManyToOne
+    @JoinColumn(name = "scanner_id")
+    private QRScannerData scanner;
 
-    @Column(name = "user_id")
-    @Getter
-    @Setter
-    private Integer userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserData user;
 
     @Column(name = "scan_time")
-    @Getter
-    @Setter
     private LocalDateTime scanTime;
 }

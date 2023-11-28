@@ -11,5 +11,4 @@ public class RoomDTO {
     private String roomName;
     private Integer capacity;
     private Integer floor;
-    private List<ScheduleData> schedules;
 }

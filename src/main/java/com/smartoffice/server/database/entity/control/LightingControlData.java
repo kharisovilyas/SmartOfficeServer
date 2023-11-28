@@ -13,8 +13,12 @@ import java.util.Date;
 @Table(name = "Lighting_Control")
 public class LightingControlData {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "control_id")
     private Long controlId;
+
+    @Column(name="control_name")
+    private String controlName;
 
     @Column(name = "brightness")
     private Integer brightness;

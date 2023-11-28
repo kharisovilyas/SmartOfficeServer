@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface HVACControlRepository extends CrudRepository<HVACControlData, Long> {
     HVACControlData findByControlId(Long controlId);
+
+    HVACControlData findByControlName(String controlName);
 }

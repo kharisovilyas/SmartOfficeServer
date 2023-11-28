@@ -2,6 +2,7 @@ package com.smartoffice.server.features.controller.controls;
 
 import com.smartoffice.server.database.dto.control.DoorControlDTO;
 import com.smartoffice.server.database.dto.control.HVACControlDTO;
+import com.smartoffice.server.database.dto.sensors.SensorDataDTO;
 import com.smartoffice.server.features.response.ApiResponse;
 import com.smartoffice.server.features.service.controls.HVACControlService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,11 @@ public class HVACControlController {
     @GetMapping("/get/all")
     public ResponseEntity<List<HVACControlDTO>> getAllHVAC() {
         return ResponseEntity.ok(hvacControlService.getAllHVACControl());
+    }
+
+    @GetMapping("/get")
+    public ResponseEntity<HVACControlDTO> getHVACControlData(@RequestParam String hvacName) {
+        return ResponseEntity.ok(hvacControlService.getHVACControlData(hvacName));
     }
 
     @PostMapping("/update")

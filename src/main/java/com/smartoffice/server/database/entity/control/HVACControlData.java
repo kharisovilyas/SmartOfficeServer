@@ -13,8 +13,12 @@ import java.util.Date;
 @Table(name = "HVAC_Control")
 public class HVACControlData {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "control_id")
     private Long controlId;
+
+    @Column(name="control_name")
+    private String controlName;
 
     @Column(name = "temperature")
     private Double temperature;

@@ -2,8 +2,9 @@ package com.smartoffice.server.features.service.rooms;
 
 import com.smartoffice.server.database.dto.rooms.RoomDTO;
 import com.smartoffice.server.database.entity.rooms.RoomData;
-import com.smartoffice.server.features.repository.RoomRepository;
+import com.smartoffice.server.features.repository.room.RoomRepository;
 import com.smartoffice.server.features.response.ApiResponse;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +26,18 @@ public class RoomService {
                 .map(this::mapToRoomDTO)
                 .toList();
     }
-    public ResponseEntity<ApiResponse> updateRoom(RoomDTO lightingControlDTO) {
-        return null;
+    public ResponseEntity<ApiResponse> updateRoom(RoomDTO roomDTO) {
+        RoomData existingRoomData = roomRepository.findByRoomName(roomDTO.getRoomName());
+        if (existingRoomData != null) {
+            existingRoomData.setCapacity(roomDTO.getCapacity());
+            existingRoomData.setFloor(roomDTO.getFloor());
+            roomRepository.save(existingRoomData);
+            return ResponseEntity.ok(new ApiResponse("Data added successfully"));
+        } else {
+            RoomData newRoomData = mapToRoomData(roomDTO);
+            roomRepository.save(newRoomData);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Data successfully updated"));
+        }
     }
     public RoomDTO mapToRoomDTO(RoomData roomData) {
         RoomDTO roomDTO = new RoomDTO();
@@ -34,7 +45,6 @@ public class RoomService {
         roomDTO.setRoomName(roomData.getRoomName());
         roomDTO.setCapacity(roomData.getCapacity());
         roomDTO.setFloor(roomData.getFloor());
-        roomDTO.setSchedules(roomData.getSchedules());
         return roomDTO;
     }
 
